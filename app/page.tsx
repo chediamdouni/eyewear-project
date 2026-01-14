@@ -7,12 +7,15 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export default function LandingPage() {
   return (
-    <SectionContainer>
+    // <SectionContainer>
+
+    <>
       <Hero />
       <Manifesto />
       <Collection />
       <Craft />
       <FitForm />
-    </SectionContainer>
+    </>
+    // </SectionContainer>
   );
 }

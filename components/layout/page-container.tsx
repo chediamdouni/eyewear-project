@@ -7,5 +7,5 @@ export function PageContainer({
   children: React.ReactNode;
   className?: string;
 }) {
-  return <div className={cn("container-shell", className)}>{children}</div>;
+  return <div className={className}>{children}</div>;
 }

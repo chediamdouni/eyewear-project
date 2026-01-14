@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageTransition } from "@/components/layout/page-transition";
+import { SmoothScroll } from "@/components/layout/smooth-scroll";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],
@@ -26,12 +27,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${display.variable} ${sans.variable} font-sans antialiased`}>
-        <div className="relative min-h-screen">
-          <div className="noise-overlay" aria-hidden="true" />
-          <Navbar />
-          <PageTransition>{children}</PageTransition>
-          <Footer />
-        </div>
+        <SmoothScroll>
+          <div className="relative min-h-screen">
+            <div className="noise-overlay" aria-hidden="true" />
+            <Navbar />
+            <PageTransition>{children}</PageTransition>
+            <Footer />
+          </div>
+        </SmoothScroll>
       </body>
     </html>
   );

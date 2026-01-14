@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
@@ -15,11 +15,10 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -12 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="pb-20 pt-24 md:pt-28"
+        className="pt-10 md:pt-14"
       >
         <PageContainer>{children}</PageContainer>
       </motion.main>
     </AnimatePresence>
   );
 }
-
