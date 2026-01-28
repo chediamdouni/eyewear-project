@@ -25,7 +25,7 @@ export const PRODUCTS: Product[] = [
     fit: "Medium European fit / Keyhole bridge",
     material: "Japanese acetate, titanium core wire",
     origin: "Hand-finished in Fukui, Japan",
-    image: "/products/clarity-01.jpg",
+    image: "/products/IMG_E8405.jpg",
   },
   {
     slug: "field-spectra",
@@ -39,7 +39,7 @@ export const PRODUCTS: Product[] = [
     fit: "Wide fit / Adjustable titanium nose pads",
     material: "Beta-titanium, stainless hinges",
     origin: "Engineered in Berlin, finished in Sabae",
-    image: "/products/field-spectra.jpg",
+    image: "/images/products/IMG_E8668.jpg",
   },
   {
     slug: "linearity",
@@ -53,7 +53,7 @@ export const PRODUCTS: Product[] = [
     fit: "Narrow fit / Sculpted saddle bridge",
     material: "Stainless steel with acetate temple tips",
     origin: "Assembled in Italy / finished by hand",
-    image: "/products/linearity.jpg",
+    image: "/images/products/IMG_E8676.jpg",
   },
 ];
 

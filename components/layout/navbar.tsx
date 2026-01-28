@@ -223,9 +223,9 @@ export function Navbar() {
         {/* Actions */}
         <div className="flex items-center gap-3 pointer-events-auto">
           <div className="hidden lg:flex items-center gap-2">
-            <Button asChild variant="outline" size="sm" className="text-xs">
+            {/* <Button asChild variant="outline" size="sm" className="text-xs">
               <Link href="/find-your-pair">Trouver votre paire</Link>
-            </Button>
+            </Button> */}
             <Button
               asChild
               variant="ghost"
@@ -308,14 +308,14 @@ export function Navbar() {
                 </Link>
 
                 <div className="pt-4 border-t space-y-3">
-                  <Button asChild variant="default" className="w-full">
+                  {/* <Button asChild variant="default" className="w-full">
                     <Link
                       href="/find-your-pair"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Trouver votre paire
                     </Link>
-                  </Button>
+                  </Button> */}
                   <Button asChild variant="outline" className="w-full">
                     <Link href="/cart" onClick={() => setIsMobileMenuOpen(false)}>
                       Panier

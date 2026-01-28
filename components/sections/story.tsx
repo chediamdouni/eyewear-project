@@ -10,15 +10,13 @@ export function StorySection() {
         {/* Text left */}
         <FadeIn className="space-y-5">
           <Text variant="caption" className="text-muted-foreground">
-            Behind the lenses
+            Ce qui se cache derrière les lunettes
           </Text>
           <Text variant="h2" className="text-foreground">
-            Built for the way you actually move.
+            Conçues pour s&apos;adapter à vos mouvements.
           </Text>
           <Text variant="body" className="max-w-md text-muted-foreground">
-            Clevards frames are designed to live between bright streets, studio
-            light and late screens — pieces that feel as considered as the rest of
-            your wardrobe, not louder than it.
+            Les montures Clevards sont conçues pour s&apos;adapter à la luminosité des rues, à la lumière des studios et à la pénombre des salles de cinéma. Elles s&apos;intègrent parfaitement à votre garde-robe, sans pour autant la dominer.
           </Text>
         </FadeIn>
 

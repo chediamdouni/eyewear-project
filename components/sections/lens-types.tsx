@@ -10,13 +10,13 @@ const lensTypes = [
   {
     id: "blue-light",
     name: "Anti-lumière bleue",
-    image: "/images/bluelight.png",
+    image: "/images/bluee.png",
     href: "/collections/blue-light",
   },
   {
     id: "photochromatique",
     name: "Photochromatique",
-    image: "/images/photochromatique.jpg",
+    image: "/images/photochromatique.png",
     href: "/collections/photochromatique",
   },
   {
@@ -28,7 +28,7 @@ const lensTypes = [
   {
     id: "light-responsive",
     name: "Sensibles à la lumière",
-    image: "/images/model-femme.jpg",
+    image: "/images/sensible-lumiere.png",
     href: "/collections/light-responsive",
   },
 ];
