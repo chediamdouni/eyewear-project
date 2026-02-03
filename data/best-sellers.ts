@@ -20,7 +20,7 @@ export const BEST_SELLERS: BestSellerProduct[] = [
     id: "1",
     name: "Clarity 01",
     description: "The iconic cat-eye",
-    price: "297 EUR",
+    price: "42.99",
     badge: "Best Seller",
     slug: "/product/clarity-01",
     colors: [
@@ -48,7 +48,7 @@ export const BEST_SELLERS: BestSellerProduct[] = [
     id: "2",
     name: "Field Spectra",
     description: "Minimalist round frame",
-    price: "260 EUR",
+    price: "54 ",
     badge: "New",
     slug: "/product/field-spectra",
     colors: [
@@ -70,7 +70,7 @@ export const BEST_SELLERS: BestSellerProduct[] = [
     id: "3",
     name: "Linearity",
     description: "Geometric precision",
-    price: "297 EUR",
+    price: "50.99",
     badge: "Best Seller",
     slug: "/product/linearity",
     colors: [
@@ -98,7 +98,7 @@ export const BEST_SELLERS: BestSellerProduct[] = [
     id: "4",
     name: "Aperture",
     description: "Bold square silhouette",
-    price: "280 EUR",
+    price: "40.99",
     slug: "/product/aperture",
     colors: [
       {
@@ -119,7 +119,7 @@ export const BEST_SELLERS: BestSellerProduct[] = [
     id: "5",
     name: "Prism",
     description: "Angular elegance",
-    price: "310 EUR",
+    price: "30.99",
     badge: "New",
     slug: "/product/prism",
     colors: [
@@ -141,7 +141,7 @@ export const BEST_SELLERS: BestSellerProduct[] = [
     id: "6",
     name: "Vertex",
     description: "Modern aviator",
-    price: "275 EUR",
+    price: "10.99",
     slug: "/product/vertex",
     colors: [
       {

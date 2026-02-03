@@ -20,7 +20,7 @@ export function Hero() {
       {/* Men's Collection - Left Side */}
       <FadeIn variants={heroImageVariants} className="group relative overflow-hidden">
         <Link
-          href="/collections/homme"
+          href="/collection/homme"
           className="relative block h-full w-full"
           aria-label="Collection Homme"
         >
@@ -44,7 +44,7 @@ export function Hero() {
       {/* Women's Collection - Right Side */}
       <FadeIn variants={heroImageVariants} className="group relative overflow-hidden">
         <Link
-          href="/collections/femme"
+          href="/collection/femme"
           className="relative block h-full w-full"
           aria-label="Collection Femme"
         >

@@ -1,89 +1,11 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
-import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { BEST_SELLERS, type BestSellerProduct } from "@/data/best-sellers";
+import { ProductCard } from "@/components/product/product-card";
+import { BEST_SELLERS } from "@/data/best-sellers";
 import { cn } from "@/lib/utils";
-
-function ProductCard({ product }: { product: BestSellerProduct }) {
-  const [selectedColorIndex, setSelectedColorIndex] = React.useState(0);
-  const [isHovered, setIsHovered] = React.useState(false);
-  const selectedColor = product.colors[selectedColorIndex];
-
-  return (
-    <div className="group relative flex flex-col p-1">
-      <Link
-        href={product.slug}
-        className="relative block aspect-square w-full overflow-hidden bg-muted/30"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* Badge */}
-        {product.badge && (
-          <div className="absolute left-3 top-3 z-10">
-            <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-foreground">
-              {product.badge}
-            </span>
-          </div>
-        )}
-
-        {/* Images with hover transition */}
-        <div className="relative h-full w-full">
-          <Image
-            src={selectedColor.image}
-            alt={product.name}
-            fill
-            className={cn(
-              "object-cover transition-opacity duration-300",
-              isHovered ? "opacity-0" : "opacity-100",
-            )}
-          />
-          <Image
-            src={selectedColor.hoverImage}
-            alt={`${product.name} on model`}
-            fill
-            className={cn(
-              "object-cover transition-opacity duration-300",
-              isHovered ? "opacity-100" : "opacity-0",
-            )}
-          />
-        </div>
-      </Link>
-
-      {/* Product Info */}
-      <div className="mt-4 space-y-1">
-        <h3 className="font-semibold text-foreground">{product.name}</h3>
-        <p className="text-sm text-muted-foreground">{product.description}</p>
-        <p className="text-sm font-medium text-foreground">{product.price}</p>
-      </div>
-
-      {/* Color Selector */}
-      <div className="mt-3 flex gap-2">
-        {product.colors.map((color, index) => (
-          <button
-            key={color.name}
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              setSelectedColorIndex(index);
-            }}
-            className={cn(
-              "h-5 w-5 rounded-full border-2 transition-all",
-              selectedColorIndex === index
-                ? "border-foreground scale-110"
-                : "border-border hover:border-foreground/50",
-            )}
-            style={{ backgroundColor: color.hex }}
-            aria-label={`Select ${color.name} color`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export function BestSellers() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -179,7 +101,7 @@ export function BestSellers() {
             {BEST_SELLERS.map((product) => (
               <div
                 key={product.id}
-                className="min-w-0 flex-[0_0_83.33%] sm:flex-[0_0_40%] md:flex-[0_0_33.33%] lg:flex-[0_0_25%] xl:flex-[0_0_20%]"
+                className="flex-shrink-0"
               >
                 <ProductCard product={product} />
               </div>
