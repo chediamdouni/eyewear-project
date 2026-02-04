@@ -26,6 +26,7 @@ import {
     Phone,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { FadeIn } from "@/components/motion/fade-in";
 
 interface ProductPageProps {
     product: Product;
@@ -117,12 +118,12 @@ export function ProductPage({ product }: ProductPageProps) {
     };
 
     return (
-        <div className="space-y-12">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16">
+        <div className="mx-auto max-w-8xl px-4 md:px-8 py-16 md:py-20 space-y-16">
+            <FadeIn className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-14 lg:gap-20">
                 {/* Left Column - Product Image */}
-                <div className="space-y-4">
+                <div className="space-y-5">
                     {/* Main Image */}
-                    <div className="relative aspect-square overflow-hidden rounded-lg border border-gray-200 bg-gray-50 w-full max-w-[500px] mx-auto md:max-w-[450px] lg:max-w-[500px]">
+                    <div className="relative mx-auto aspect-square w-full max-w-[500px] border border-black/10 bg-white/70 bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.18),transparent_60%)] backdrop-blur-xl shadow-[0_32px_120px_rgba(15,23,42,0.25)] overflow-hidden md:max-w-[460px] lg:max-w-[520px]">
                         <Image
                             src={productImages[selectedImageIndex]}
                             alt={`${product.name} - Image ${selectedImageIndex + 1}`}
@@ -140,10 +141,10 @@ export function ProductPage({ product }: ProductPageProps) {
                                 type="button"
                                 onClick={() => setSelectedImageIndex(index)}
                                 className={cn(
-                                    "relative aspect-square overflow-hidden rounded-md border-2 transition-all bg-gray-50",
+                                    "relative aspect-square overflow-hidden border border-black/10 bg-white/70 transition-all",
                                     selectedImageIndex === index
-                                        ? "border-primary ring-2 ring-primary/20"
-                                        : "border-gray-200 hover:border-gray-300",
+                                        ? "border-black bg-white"
+                                        : "hover:border-black/40",
                                 )}
                             >
                                 <Image
@@ -158,7 +159,7 @@ export function ProductPage({ product }: ProductPageProps) {
                 </div>
 
                 {/* Right Column - Product Info */}
-                <div className="space-y-4 p-6">
+                <div className="space-y-6 md:pl-4 lg:pl-8">
                     {/* Limited Offer Alert */}
                     {/* <div className="flex items-center gap-2 rounded-lg bg-orange-50 px-4 py-2 text-orange-600">
                     <Flame className="h-4 w-4" />
@@ -179,9 +180,14 @@ export function ProductPage({ product }: ProductPageProps) {
                 </div> */}
 
                     {/* Product Name - Bigger */}
-                    <h1 className="text-3xl font-bold tracking-tight md:text-3xl lg:text-4xl">
-                        {product.name}
-                    </h1>
+                    <div className="space-y-3">
+                        <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-amber-900/70">
+                            Clevards Eyewear
+                        </p>
+                        <h1 className="text-3xl font-semibold tracking-tight md:text-3xl lg:text-4xl">
+                            {product.name}
+                        </h1>
+                    </div>
 
                     {/* Feature Badges with Icons */}
                     <div className="flex flex-wrap gap-1">
@@ -260,7 +266,7 @@ export function ProductPage({ product }: ProductPageProps) {
                         </div>
 
                         {/* Total Price Section */}
-                        <div className="rounded-md border-2 border-primary/20 bg-primary/5 p-3">
+                        <div className="border-2 border-primary/20 bg-primary/5 p-3">
                             <div className="flex items-center justify-between">
                                 <span className="text-sm font-medium text-muted-foreground">
                                     Prix Totale:
@@ -280,7 +286,7 @@ export function ProductPage({ product }: ProductPageProps) {
                         </div>
 
                         {/* Order Form */}
-                        <div className="space-y-4 rounded-lg border border-gray-200 bg-gray-50 p-6">
+                        <div className="space-y-4 border border-black/10 bg-white/70 backdrop-blur-sm p-6">
                             <h3 className="text-lg font-semibold">
                                 Informations de commande
                             </h3>
@@ -366,7 +372,7 @@ export function ProductPage({ product }: ProductPageProps) {
                         {/* Purchase Button */}
                         <Button
                             size="lg"
-                            className="w-full bg-primary text-lg font-semibold"
+                            className="w-full bg-primary py-4 text-sm md:text-base font-semibold tracking-[0.22em] uppercase"
                             onClick={handlePurchase}
                             disabled={
                                 !formData.name ||
@@ -379,23 +385,32 @@ export function ProductPage({ product }: ProductPageProps) {
                         </Button>
                     </div>
                 </div>
-            </div>
+            </FadeIn>
 
             {/* Discover / Recommendations */}
             {recommendedProducts.length > 0 && (
-                <section className="space-y-4 px-8">
-                    <h2 className="text-xl font-semibold tracking-tight md:text-2xl">
-                        Vous aimerez aussi
-                    </h2>
-
-                    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-                        {recommendedProducts.map((p) => (
-                            <div key={p.slug} className="overflow-hidden bg-card">
-                                <ProductCard product={p} />
+                <FadeIn className="space-y-6">
+                    <section className="space-y-4">
+                        <div className="flex items-baseline ">
+                            <div>
+                                <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-amber-900/70">
+                                    Sélection complémentaire
+                                </p>
+                                <h2 className="mt-1 text-xl font-semibold tracking-tight md:text-2xl">
+                                    Vous aimerez aussi
+                                </h2>
                             </div>
-                        ))}
-                    </div>
-                </section>
+                        </div>
+
+                        <div className="flex flex-wrap  shrink-0 gap-4">
+                            {recommendedProducts.map((p) => (
+                                <div key={p.slug} className="bg-card">
+                                    <ProductCard product={p} />
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                </FadeIn>
             )}
         </div>
     );

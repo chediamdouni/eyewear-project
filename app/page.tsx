@@ -7,7 +7,10 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export default function LandingPage() {
   return (
-    <SectionContainer>
+    <SectionContainer
+      spacing="loose"
+      className="relative pt-24 pb-24 md:pt-28 md:pb-32 bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.12),transparent_55%),_#fdf8f1]"
+    >
       <Hero />
       <BestSellers />
       <StorySection />

@@ -75,6 +75,7 @@ body {
   gap: 4rem;
 }
 
+
 @media (max-width: 900px) {
   .luxury-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -161,8 +162,8 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
-
