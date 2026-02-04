@@ -34,7 +34,7 @@ export function WhyChoose() {
       </FadeIn>
 
       {/* Full Screen Image */}
-      <FadeIn className="relative h-[60vh] w-full overflow-hidden rounded-3xl border border-black/5 bg-zinc-950/90 backdrop-blur-xl md:h-[80vh] shadow-[0_32px_120px_rgba(15,23,42,0.55)]">
+      <FadeIn className="relative h-[60vh] w-full overflow-hidden rounded-md bg-zinc-950/90 backdrop-blur-sm md:h-[80vh] shadow-sm">
         <Image
           src="/images/affiche2.png"
           alt="Clevard Eyewear - Artisanat et Qualité"

@@ -57,35 +57,54 @@ export function LensTypes() {
         </Text>
       </div>
 
-      <div className="rounded-3xl border border-black/5 bg-white/40 backdrop-blur-xl px-4 py-6 md:px-8 md:py-10 shadow-[0_24px_90px_rgba(15,23,42,0.18)]">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {lensTypes.map((lens, index) => (
-            <FadeIn
-              key={lens.id}
-              delay={index * 0.1}
-              className="group relative overflow-hidden rounded-2xl bg-amber-50/40 border border-amber-100/70 shadow-sm"
-            >
-              <Link href={lens.href} className="relative block aspect-[4/5] w-full">
-                <Image
-                  src={lens.image}
-                  alt={lens.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-                <div className="absolute inset-x-0 bottom-0 flex items-center justify-center pb-4">
-                  <span
-                    className={cn(
-                      "rounded-full border border-black/5 bg-white/90 px-6 py-2 text-xs font-medium tracking-wide text-neutral-900",
-                      "shadow-sm transition-transform duration-200 group-hover:scale-105",
-                    )}
-                  >
-                    {lens.name}
-                  </span>
-                </div>
-              </Link>
-            </FadeIn>
-          ))}
+      <div className="bg-white/40 px-4 py-6 md:px-8 md:py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[minmax(320px,_auto)]">
+          {lensTypes.map((lens, index) => {
+
+            let gridPosition = "";
+            if (index === 0) {
+
+              gridPosition = "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3";
+            } else if (index === 1) {
+              gridPosition = "lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2";
+            } else if (index === 2) {
+              gridPosition = "lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3";
+            } else if (index === 3) {
+              gridPosition = "lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-3";
+            }
+
+            return (
+              <FadeIn
+                key={lens.id}
+                delay={index * 0.1}
+                className={cn(
+                  "group relative overflow-hidden bg-amber-50/40 border border-black/15",
+                  gridPosition
+                )}
+              >
+                <Link href={lens.href} className="relative block aspect-[4/5] w-full h-full">
+                  <Image
+                    src={lens.image}
+                    alt={lens.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-center pb-4">
+                    <span
+                      className={cn(
+                        "rounded-full border border-white/20 bg-white/90 px-6 py-2 text-xs font-medium tracking-wide text-neutral-900",
+                        "transition-transform duration-200 group-hover:scale-105",
+                      )}
+                    >
+                      {lens.name}
+                    </span>
+                  </div>
+                </Link>
+              </FadeIn>
+            );
+          })}
         </div>
       </div>
     </section>

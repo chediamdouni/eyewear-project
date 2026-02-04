@@ -9,7 +9,7 @@ import type { Product } from "@/data/products";
 import { cn } from "@/lib/utils";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Eye, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
 type ProductCardProps = {
   product: BestSellerProduct | Product;
@@ -46,7 +46,7 @@ export function ProductCard({ product, compact }: ProductCardProps) {
     : null;
 
   return (
-    <div className="group relative flex flex-col p-4 border border-black/10 rounded-xl w-[300px] flex-shrink-0 space-y-2">
+    <div className="group relative flex flex-col  border border-black/10 w-[300px] flex-shrink-0 space-y-2">
       <Link
         href={href}
         className="relative block aspect-square w-full overflow-hidden bg-muted/30"
@@ -63,7 +63,7 @@ export function ProductCard({ product, compact }: ProductCardProps) {
         )}
 
         {/* Images */}
-        <div className="relative h-full w-full rounded-xl overflow-hidden">
+        <div className="relative h-full w-full  overflow-hidden">
           <Image
             src={mainImage}
             alt={product.name}
@@ -92,61 +92,82 @@ export function ProductCard({ product, compact }: ProductCardProps) {
         </div>
       </Link>
 
-      {/* Color Selector */}
-      {bestSeller && !compact && (
-        <div className=" flex gap-2">
-          {product.colors.map((color, index) => (
-            <button
-              key={color.name}
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                setSelectedColorIndex(index);
-              }}
-              className={cn(
-                "h-4 w-4 rounded-full border-1 transition-all",
-                selectedColorIndex === index
-                  ? "border-foreground scale-105"
-                  : "border-border hover:border-foreground/50",
-              )}
-              style={{ backgroundColor: color.hex }}
-              aria-label={`Select ${color.name} color`}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Product Info */}
-      <div className="space-y-1">
-        <h3 className="font-semibold text-foreground">{product.name}</h3>
-        {!compact && (
-          <>
-            {bestSeller ? (
-              <p className="text-sm text-muted-foreground ">{product.description}</p>
-            ) : (
-              <p className="text-sm text-muted-foreground">{product.tagline}</p>
-            )}
-            <div className="flex items-center gap-1">
-              <p className="text-sm font-medium text-foreground">${product.price} </p>
-              <p className="text-sm text-muted-foreground line-through">$100</p>
-              <p className="text-sm text-green-500">20%</p>
-            </div>
-          </>
+      <div className="p-4 ">
+        {/* Color Selector */}
+        {bestSeller && !compact && (
+          <div className=" flex gap-2 ">
+            {product.colors.map((color, index) => (
+              <button
+                key={color.name}
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSelectedColorIndex(index);
+                }}
+                className={cn(
+                  "h-4 w-4 rounded-full border-1 transition-all",
+                  selectedColorIndex === index
+                    ? "border-foreground scale-105"
+                    : "border-border hover:border-foreground/50",
+                )}
+                style={{ backgroundColor: color.hex }}
+                aria-label={`Select ${color.name} color`}
+              />
+            ))}
+          </div>
         )}
+
+        {/* Product Info */}
+        <div className="space-y-1 mt-2">
+          <h3 className="font-semibold text-foreground">{product.name}</h3>
+          {!compact && (
+            <>
+              {bestSeller ? (
+                <p className="text-sm text-muted-foreground ">{product.description}</p>
+              ) : (
+                <p className="text-sm text-muted-foreground">{product.tagline}</p>
+              )}
+              <div className="flex items-center gap-1">
+                <p className="text-sm font-medium text-foreground">${product.price} </p>
+                <p className="text-sm text-muted-foreground line-through">$100</p>
+                <p className="text-sm text-green-500">20%</p>
+              </div>
+            </>
+          )}
+        </div>
       </div>
-      <div className="flex items-center gap-2 justify-center mt-3 ">
-        <Button variant="outline" className="w-full rounded-full bg-black/70 text-white">
-          <Link href={href} className="flex items-center gap-2">
-            <ShoppingCart className="w-4 h-4" />
+
+      <div className="flex mt-3 ">
+        <Button
+          variant="outline"
+          className="w-full rounded-none border-none bg-amber-900/70 text-white 
+             relative overflow-hidden group hover:bg-amber-900/60 hover:text-white"
+        >
+          <Link
+            href={href}
+            className="relative flex items-center w-full px-4"
+          >
             <span className="text-xs font-medium">Acheter</span>
+            <ShoppingCart
+              className="
+             w-4 h-4
+             absolute
+             left-16
+             translate-x-47
+             transition-transform
+             duration-700
+             ease-in-out
+             group-hover:translate-x-[calc(100%-0rem)]
+             "
+            />
           </Link>
         </Button>
-        <Button variant="secondary" className="rounded-full ">
-          <Link href={href} className="flex items-center gap-2">
-            <Eye className="w-4 h-4" />
-            <span className="text-xs font-medium">Apperçu</span>
-          </Link>
-        </Button>
+        {/* <Button variant="secondary" className="rounded-full ">
+            <Link href={href} className="flex items-center gap-2">
+              <Eye className="w-4 h-4" />
+              <span className="text-xs font-medium">Apperçu</span>
+            </Link>
+          </Button> */}
       </div>
 
 

@@ -65,24 +65,60 @@ export function Navbar() {
       {/* Navbar */}
       <header
         className={cn(
-          "fixed left-0 right-0 z-50 h-14 bg-white/80 backdrop-blur-md border-b border-black/10 transition-transform duration-300 ease-in-out",
+          "fixed left-0 right-0 z-50 bg-[#faf9f7] border-b border-black/5 transition-transform duration-300 ease-in-out",
           isVisible ? "translate-y-0" : "-translate-y-full",
           isBannerVisible ? "top-[38px]" : "top-0"
         )}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between h-15 px-4 lg:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-6 lg:px-12">
+          {/* Left Navigation */}
+          <nav className="flex items-center gap-8">
+            <Link
+              href="/"
+              className="text-sm font-normal text-black hover:text-black/60 transition-colors"
+            >
+              Shop All
+            </Link>
+            <Link
+              href="/collection/homme"
+              className="text-sm font-normal text-black hover:text-black/60 transition-colors"
+            >
+              Homme
+            </Link>
+            <Link
+              href="/collection/femme"
+              className="text-sm font-normal text-black hover:text-black/60 transition-colors"
+            >
+              Femme
+            </Link>
+            <Link
+              href="/about"
+              className="text-sm font-normal text-black hover:text-black/60 transition-colors"
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className="text-sm font-normal text-black hover:text-black/60 transition-colors"
+            >
+              Contact
+            </Link>
+          </nav>
+
+          {/* Center Brand Name */}
           <Link
             href="/"
-            className="text-sm font-medium text-black hover:text-black/70 transition-colors tracking-wide"
+            className="absolute left-1/2 -translate-x-1/2 font-display text-xl font-normal text-black tracking-wide"
           >
-            Clevards Eyewear
+            Clevards Eyewear™
           </Link>
 
+          {/* Right Cart */}
           <Button
             asChild
             variant="ghost"
             size="icon"
-            className="text-black hover:text-black/70 hover:bg-black/5 relative"
+            className="text-black hover:text-black/70 hover:bg-transparent relative"
           >
             <Link href="/cart" aria-label="Panier">
               <ShoppingCart className="h-5 w-5" />

@@ -32,7 +32,7 @@ export function StorySection() {
         </FadeIn>
 
         {/* Video right */}
-        <FadeIn className="relative aspect-4/5 h-full w-full overflow-hidden rounded-3xl border border-black/5 bg-white/30 backdrop-blur-2xl shadow-[0_32px_120px_rgba(15,23,42,0.28)] md:h-full">
+        <FadeIn className="relative aspect-4/5 h-full w-full overflow-hidden rounded-md border border-black/5 bg-white/30 backdrop-blur-2xl shadow-[0_32px_120px_rgba(15,23,42,0.28)] md:h-full">
           <video
             src="/images/home-vid.mp4"
             className="h-full w-full object-cover"

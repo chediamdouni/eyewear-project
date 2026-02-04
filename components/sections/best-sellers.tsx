@@ -70,7 +70,7 @@ export function BestSellers() {
       </FadeIn>
 
       <FadeIn>
-        <div className="rounded-3xl border border-black/5 bg-white/60 px-3 py-6 backdrop-blur-xl shadow-[0_24px_90px_rgba(15,23,42,0.18)] md:px-6 md:py-8">
+        <div className="bg-white/60 backdrop-blur-xl  md:px-6 md:py-8">
           <div className="relative">
             {/* Navigation Buttons */}
             <button
@@ -103,7 +103,7 @@ export function BestSellers() {
 
             {/* Carousel */}
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex gap-6 md:gap-8 pl-4 pr-4 md:pl-6 md:pr-6">
+              <div className="flex">
                 {BEST_SELLERS.map((product) => (
                   <div key={product.id} className="flex-shrink-0">
                     <ProductCard product={product} />

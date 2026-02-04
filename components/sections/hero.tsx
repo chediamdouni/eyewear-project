@@ -20,7 +20,7 @@ export function Hero() {
       {/* Men's Collection - Left Side */}
       <FadeIn
         variants={heroImageVariants}
-        className="group relative overflow-hidden rounded-3xl border border-black/5 bg-zinc-950/80 backdrop-blur-xl shadow-[0_28px_120px_rgba(15,23,42,0.65)]"
+        className="group relative overflow-hidden rounded-xl  bg-zinc-950/80 backdrop-blur-sm shadow-[0_8px_10px_rgba(15,23,42,0.65)]"
       >
         <Link
           href="/collection/homme"
@@ -55,7 +55,7 @@ export function Hero() {
       {/* Women's Collection - Right Side */}
       <FadeIn
         variants={heroImageVariants}
-        className="group relative overflow-hidden rounded-3xl border border-black/5 bg-zinc-950/80 backdrop-blur-xl shadow-[0_28px_120px_rgba(15,23,42,0.65)]"
+        className="group relative overflow-hidden rounded-xl  bg-zinc-950/80 backdrop-blur-sm shadow-[0_8px_10px_rgba(15,23,42,0.65)]"
       >
         <Link
           href="/collection/femme"
