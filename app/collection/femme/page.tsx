@@ -1,4 +1,4 @@
-import { CollectionPage } from "@/components/collection/collection-page";
+import { CollectionPage } from "@/components/product/collection-page";
 import { PRODUCTS } from "@/data/products";
 
 export default function FemmeCollectionPage() {
@@ -7,5 +7,5 @@ export default function FemmeCollectionPage() {
     (product) => product.category === "femme" || product.category === "unisex"
   );
 
-  return <CollectionPage category="femme" products={femmeProducts} />;
+  return <CollectionPage category="femme" products={femmeProducts} allProducts={PRODUCTS} />;
 }

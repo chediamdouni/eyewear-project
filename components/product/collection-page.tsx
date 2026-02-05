@@ -1,14 +1,15 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/data/products";
+import RollingText from "../motion/rolling-text";
+import { ProductCard } from "@/components/product/product-card";
 
 interface CollectionPageProps {
   category: "homme" | "femme";
   products: Product[];
+  allProducts?: Product[]; // All products for client-side filtering
 }
 
 type SortOption = "default" | "price-asc" | "price-desc" | "newest";
@@ -21,7 +22,15 @@ interface Filters {
 }
 
 
-export function CollectionPage({ category, products }: CollectionPageProps) {
+export function CollectionPage({ category, products, allProducts }: CollectionPageProps) {
+  // Use allProducts if provided, otherwise use products
+  const availableProducts = allProducts || products;
+
+  // State for active category tab
+  const [activeCategory, setActiveCategory] = React.useState<"all" | "homme" | "femme">(
+    category === "homme" ? "homme" : category === "femme" ? "femme" : "all"
+  );
+
   const [filters, setFilters] = React.useState<Filters>({
     frameShape: [],
     color: [],
@@ -29,14 +38,24 @@ export function CollectionPage({ category, products }: CollectionPageProps) {
     sort: "default",
   });
 
+  // Filter products by category based on active tab
+  const categoryFilteredProducts = React.useMemo(() => {
+    if (activeCategory === "all") {
+      return availableProducts;
+    }
+    return availableProducts.filter(
+      (p) => p.category === activeCategory || p.category === "unisex"
+    );
+  }, [availableProducts, activeCategory]);
+
   // Calculer les prix min/max
   const priceRange = React.useMemo(() => {
-    const prices = products.map((p) => p.priceValue);
+    const prices = categoryFilteredProducts.map((p) => p.priceValue);
     return {
       min: Math.min(...prices),
       max: Math.max(...prices),
     };
-  }, [products]);
+  }, [categoryFilteredProducts]);
 
   // Initialiser le range de prix avec les valeurs réelles
   React.useEffect(() => {
@@ -48,7 +67,7 @@ export function CollectionPage({ category, products }: CollectionPageProps) {
 
   // Filtrer et trier les produits
   const filteredProducts = React.useMemo(() => {
-    let result = [...products];
+    let result = [...categoryFilteredProducts];
 
     // Filtrer par forme
     if (filters.frameShape.length > 0) {
@@ -89,46 +108,48 @@ export function CollectionPage({ category, products }: CollectionPageProps) {
     }
 
     return result;
-  }, [products, filters]);
+  }, [categoryFilteredProducts, filters]);
 
 
 
   return (
-    <div className="min-h-screen bg-[#faf9f7] pt-24 pb-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="min-h-screen pt-24 pb-16">
+      <div className="w-full mx-auto px-6 lg:px-12">
         {/* Category Tabs */}
-        <div className="mb-12 flex items-center gap-8 border-b border-black/10">
-          <Link
-            href="/"
+        <div className="mb-12 flex items-center gap-8">
+          <button
+            onClick={() => setActiveCategory("all")}
             className={cn(
-              "pb-4 text-sm font-normal text-black transition-colors relative",
-              "after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-transparent hover:after:bg-black/20"
-            )}
-          >
-            All
-          </Link>
-          <Link
-            href="/collection/homme"
-            className={cn(
-              "pb-4 text-sm font-normal transition-colors relative",
-              category === "homme"
+              "pb-2 text-3xl font-[400] transition-colors relative cursor-pointer",
+              activeCategory === "all"
                 ? "text-black after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-black"
-                : "text-black/50 hover:text-black after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-transparent hover:after:bg-black/20"
+                : "text-black hover:text-black after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-transparent hover:after:bg-black/20"
             )}
           >
-            Homme
-          </Link>
-          <Link
-            href="/collection/femme"
+            <RollingText text="All" triggerOnHover={true} />
+          </button>
+          <button
+            onClick={() => setActiveCategory("homme")}
             className={cn(
-              "pb-4 text-sm font-normal transition-colors relative",
-              category === "femme"
+              "pb-2 text-3xl font-[400] transition-colors relative cursor-pointer",
+              activeCategory === "homme"
                 ? "text-black after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-black"
-                : "text-black/50 hover:text-black after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-transparent hover:after:bg-black/20"
+                : "text-black hover:text-black after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-transparent hover:after:bg-black/20"
             )}
           >
-            Femme
-          </Link>
+            <RollingText text="Homme" triggerOnHover={true} />
+          </button>
+          <button
+            onClick={() => setActiveCategory("femme")}
+            className={cn(
+              "pb-2 text-3xl font-[400] transition-colors relative cursor-pointer",
+              activeCategory === "femme"
+                ? "text-black after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-black"
+                : "text-black hover:text-black after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-transparent hover:after:bg-black/20"
+            )}
+          >
+            <RollingText text="Femme" triggerOnHover={true} />
+          </button>
         </div>
 
         {/* Product Grid */}
@@ -147,54 +168,5 @@ export function CollectionPage({ category, products }: CollectionPageProps) {
         )}
       </div>
     </div>
-  );
-}
-
-function ProductCard({ product }: { product: Product }) {
-  const [isHovered, setIsHovered] = React.useState(false);
-
-  // Extract product number from name or slug (e.g., "clarity-01" -> "01")
-  const productNumber = product.slug.match(/\d+/)?.[0] || "";
-
-  return (
-    <Link 
-      href={`/product/${product.slug}`}
-      className="group block"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="space-y-3">
-        {/* Product Image */}
-        <div className="relative aspect-square overflow-hidden bg-[#f5f3f0]">
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            className={cn(
-              "object-cover transition-transform duration-500",
-              isHovered && "scale-105"
-            )}
-            style={{
-              boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
-            }}
-          />
-        </div>
-
-        {/* Product Info */}
-        <div className="space-y-1">
-          {productNumber && (
-            <p className="text-xs font-normal text-black/60 tracking-wide">
-              {productNumber}
-            </p>
-          )}
-          <h3 className="text-sm font-normal text-black">
-            {product.name}
-          </h3>
-          <p className="text-sm font-normal text-black">
-            {product.price}
-          </p>
-        </div>
-      </div>
-    </Link>
   );
 }

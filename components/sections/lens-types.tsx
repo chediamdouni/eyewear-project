@@ -57,8 +57,8 @@ export function LensTypes() {
         </Text>
       </div>
 
-      <div className="bg-white/40 px-4 py-6 md:px-8 md:py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[minmax(320px,_auto)]">
+      <div className="bg-white/40 py-6 md:py-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  auto-rows-[minmax(320px,_auto)] gap-4 md:gap-6">
           {lensTypes.map((lens, index) => {
 
             let gridPosition = "";
@@ -78,23 +78,23 @@ export function LensTypes() {
                 key={lens.id}
                 delay={index * 0.1}
                 className={cn(
-                  "group relative overflow-hidden bg-amber-50/40 border border-black/15",
+                  "group relative overflow-hidden bg-amber-50/40 border border-black/15 ",
                   gridPosition
                 )}
               >
-                <Link href={lens.href} className="relative block aspect-[4/5] w-full h-full">
+                <Link href={lens.href} className="relative block aspect-[4/5] w-full h-full ">
                   <Image
                     src={lens.image}
                     alt={lens.name}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-center pb-4">
+                  <div className="absolute inset-x-0 bottom-0 flex items-center justify-center ">
                     <span
                       className={cn(
-                        "rounded-full border border-white/20 bg-white/90 px-6 py-2 text-xs font-medium tracking-wide text-neutral-900",
+                        "w-full border bg-black/60 px-6 py-2 text-xs font-medium tracking-tight text-white text-center ",
                         "transition-transform duration-200 group-hover:scale-105",
                       )}
                     >
