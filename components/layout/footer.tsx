@@ -17,7 +17,7 @@ const footerLinks = [
     links: [
       { label: "Histoire", href: "/collections/optique" },
       { label: "Blog", href: "/collections/accessoires" },
-      { label: 'Programme "Impact au carré"', href: "/collections/accessoires" },
+      { label: 'Programme "Impact au carré"', href: "/collections/solaire" },
     ],
   },
   {
@@ -25,8 +25,8 @@ const footerLinks = [
     links: [
       { label: "FAQ", href: "/collections/accessoires" },
       { label: "Politique de confidentialité", href: "/collections/coupons" },
-      { label: "Conditions d'utilisation", href: "/collections/coupons" },
-      { label: "Politique de cookies", href: "/collections/coupons" },
+      { label: "Conditions d'utilisation", href: "/collections/solaire" },
+      { label: "Politique de cookies", href: "/collections/optique" },
     ],
   },
 ];

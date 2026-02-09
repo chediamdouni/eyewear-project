@@ -118,12 +118,12 @@ export function ProductCard({ product, compact }: ProductCardProps) {
         )}
 
         {/* Product Info */}
-        <div className="space-y-1 mt-2">
+        <div className="space-y-1 mt-2 h-[80px]">
           <h3 className="font-semibold text-foreground">{product.name}</h3>
           {!compact && (
             <>
               {bestSeller ? (
-                <p className="text-sm text-muted-foreground ">{product.description}</p>
+                <p className="text-sm text-muted-foreground line-clamp-1 ">{product.description}</p>
               ) : (
                 <p className="text-sm text-muted-foreground">{product.tagline}</p>
               )}
@@ -145,7 +145,7 @@ export function ProductCard({ product, compact }: ProductCardProps) {
         >
           <Link
             href={href}
-            className="relative flex items-center w-full px-4"
+            className="relative flex items-center w-full "
           >
             <span className="text-xs font-medium">Acheter</span>
             <ShoppingCart
@@ -157,7 +157,7 @@ export function ProductCard({ product, compact }: ProductCardProps) {
              transition-transform
              duration-700
              ease-in-out
-             group-hover:translate-x-[calc(100%-0rem)]
+             group-hover:translate-x-[calc(100%-1.5rem)]
              "
             />
           </Link>
