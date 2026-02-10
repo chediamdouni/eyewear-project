@@ -1,23 +1,26 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductPage } from "@/components/product/product-page";
-import { getProductBySlug, PRODUCTS } from "@/data/products";
+import { getProductBySlugFromDb, listProductsByCategory } from "@/lib/db/queries";
 
 type ProductPageProps = {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 };
 
 export async function generateStaticParams() {
-  return PRODUCTS.map((product) => ({ slug: product.slug }));
+  // On utilise la catégorie "all" pour récupérer tous les slugs disponibles.
+  const products = await listProductsByCategory("all");
+
+  return products.map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata(
   props: ProductPageProps,
 ): Promise<Metadata> {
-  const { slug } = await props.params;
-  const product = getProductBySlug(slug);
+  const { slug } = props.params;
+  const product = await getProductBySlugFromDb(slug);
 
   if (!product) {
     return {
@@ -32,8 +35,8 @@ export async function generateMetadata(
 }
 
 export default async function ProductPageRoute(props: ProductPageProps) {
-  const { slug } = await props.params;
-  const product = getProductBySlug(slug);
+  const { slug } = props.params;
+  const product = await getProductBySlugFromDb(slug);
 
   if (!product) {
     notFound();

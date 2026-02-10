@@ -1,11 +1,8 @@
 import { CollectionPage } from "@/components/product/collection-page";
-import { PRODUCTS } from "@/data/products";
+import { listProductsByCategory } from "@/lib/db/queries";
 
-export default function HommeCollectionPage() {
-  // Filtrer les produits pour la catégorie homme (inclut aussi unisex)
-  const hommeProducts = PRODUCTS.filter(
-    (product) => product.category === "homme" || product.category === "unisex"
-  );
+export default async function HommeCollectionPage() {
+  const hommeProducts = await listProductsByCategory("homme");
 
-  return <CollectionPage category="homme" products={hommeProducts} allProducts={PRODUCTS} />;
+  return <CollectionPage category="homme" products={hommeProducts} />;
 }
